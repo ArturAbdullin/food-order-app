@@ -21,7 +21,7 @@ export const Cart: FC<CartProps> = (props) => {
     <li>{item.name}</li>
   ));
   return (
-    <Modal>
+    <Modal onBackdropClick={props.onClose}>
       <ul className={styles["cart-items"]}>{cartComponents}</ul>
       <div className={styles.total}>
         <span>Total Amount</span>

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import ReactDOM from "react-dom";
 
 import styles from "./Modal.module.css";
 
-const Backdrop = () => {
-  return <div className={styles.backdrop} />;
+type ModalProps = {
+  onBackdropClick?: () => void;
+} & React.PropsWithChildren;
+
+const Backdrop: FC<ModalProps> = (props) => {
+  return <div className={styles.backdrop} onClick={props.onBackdropClick} />;
 };
 
-const ModalOverlay = (props: React.PropsWithChildren) => {
+const ModalOverlay: FC<ModalProps> = (props) => {
   return (
     <div className={styles.modal}>
       <div>{props.children}</div>
@@ -15,11 +19,14 @@ const ModalOverlay = (props: React.PropsWithChildren) => {
   );
 };
 
-export const Modal = (props: React.PropsWithChildren) => {
+export const Modal: FC<ModalProps> = (props) => {
   const portalElement = document.getElementById("overlays") as HTMLElement;
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(
+        <Backdrop onBackdropClick={props.onBackdropClick} />,
+        portalElement
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement
