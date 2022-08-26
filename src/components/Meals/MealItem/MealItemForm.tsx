@@ -1,16 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { Input } from "../../Interface/Input";
 
 import styles from "./MealItemForm.module.css";
 
 type MealItemFormProps = {
   id: string;
+  onAddToCart?: (amount: number) => void;
 };
 
 export const MealItemForm: FC<MealItemFormProps> = (props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onSubmitHandler: React.FormEventHandler = (event) => {
+    event.preventDefault();
+    props.onAddToCart?.(+inputRef.current!.value);
+  };
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={onSubmitHandler}>
       <Input
+        ref={inputRef}
         label="Amount"
         input={{
           id: props.id,
@@ -21,7 +29,7 @@ export const MealItemForm: FC<MealItemFormProps> = (props) => {
           defaultValue: "1",
         }}
       />
-      <button type="button">+ Add</button>
+      <button>+ Add</button>
     </form>
   );
 };
