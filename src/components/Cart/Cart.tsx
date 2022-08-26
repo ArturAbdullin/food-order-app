@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Meal } from "../../models/meal";
 import { PartialBy } from "../../models/utility";
 import { Modal } from "../Interface/Modal";
@@ -9,7 +9,11 @@ type CartItem = PartialBy<Meal, "description"> & {
   amount: number;
 };
 
-export const Cart = () => {
+type CartProps = {
+  onClose: () => void;
+};
+
+export const Cart: FC<CartProps> = (props) => {
   const cartItems: CartItem[] = [
     { id: "c1", name: "Sushi", amount: 2, price: 12.99 },
   ];
@@ -24,7 +28,9 @@ export const Cart = () => {
         <span>35.62</span>
       </div>
       <div className={styles.actions}>
-        <button className={styles["button--alt"]}>Close</button>
+        <button className={styles["button--alt"]} onClick={props.onClose}>
+          Close
+        </button>
         <button className={styles.button}>Order</button>
       </div>
     </Modal>
