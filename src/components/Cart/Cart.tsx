@@ -1,13 +1,8 @@
 import React, { FC } from "react";
-import { Meal } from "../../models/meal";
-import { PartialBy } from "../../models/utility";
+import { CartItem } from "../../models/cartItem";
 import { Modal } from "../Interface/Modal";
 
 import styles from "./Cart.module.css";
-
-type CartItem = PartialBy<Meal, "description"> & {
-  amount: number;
-};
 
 type CartProps = {
   onClose: () => void;
