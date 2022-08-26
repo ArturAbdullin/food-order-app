@@ -1,6 +1,7 @@
 import React from "react";
 import { Meal } from "../../models/meal";
 import { PartialBy } from "../../models/utility";
+import { Modal } from "../Interface/Modal";
 
 import styles from "./Cart.module.css";
 
@@ -16,7 +17,7 @@ export const Cart = () => {
     <li>{item.name}</li>
   ));
   return (
-    <div>
+    <Modal>
       <ul className={styles["cart-items"]}>{cartComponents}</ul>
       <div className={styles.total}>
         <span>Total Amount</span>
@@ -26,6 +27,6 @@ export const Cart = () => {
         <button className={styles["button--alt"]}>Close</button>
         <button className={styles.button}>Order</button>
       </div>
-    </div>
+    </Modal>
   );
 };
