@@ -11,8 +11,22 @@ const cartInitialState: CartState = {
 const cartReducer: CartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_CART_ITEM":
+      const existingCartItemIdx: number = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      let updatedItems: CartItem[] = [...state.items];
+      let existingCartItem: CartItem | undefined =
+        updatedItems[existingCartItemIdx];
+      if (existingCartItem) {
+        updatedItems[existingCartItemIdx] = {
+          ...existingCartItem,
+          amount: existingCartItem.amount + action.payload.amount,
+        };
+      } else {
+        updatedItems.push(action.payload);
+      }
       return {
-        items: state.items.concat(action.payload),
+        items: updatedItems,
         totalPrice:
           state.totalPrice + action.payload.price * action.payload.amount,
       };
