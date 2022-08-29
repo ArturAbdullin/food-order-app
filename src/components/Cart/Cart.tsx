@@ -1,6 +1,8 @@
 import React, { FC, useContext } from "react";
 import { CartContext } from "../../contexts/cart-context";
 import { Modal } from "../Interface/Modal";
+import { CartItem } from "../../models/cartItem";
+import { CartListItem } from "./CartListItem";
 
 import styles from "./Cart.module.css";
 
@@ -10,8 +12,21 @@ type CartProps = {
 
 export const Cart: FC<CartProps> = (props) => {
   const cartContext = useContext(CartContext);
+
+  const cartItemRemoveHandler = (id: string) => {};
+
+  const cartItemAddHandler = (item: CartItem) => {};
+
   const cartComponents: React.ReactNode[] = cartContext.items.map((item) => (
-    <li>{item.name}</li>
+    <CartListItem
+      key={item.id}
+      id={item.id}
+      name={item.name}
+      amount={item.amount}
+      price={item.price}
+      onRemove={cartItemRemoveHandler.bind(null, item.id)}
+      onAdd={cartItemAddHandler.bind(null, item)}
+    />
   ));
   const totalPrice = `$${cartContext.totalPrice.toFixed(2)}`;
   const hasItems = cartContext.items.length > 0;
