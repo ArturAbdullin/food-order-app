@@ -6,6 +6,7 @@ import styles from "./CartListItem.module.css";
 type CartListItemProps = CartItem & {
   onAdd: () => void;
   onRemove: () => void;
+  onClear: () => void;
 };
 
 export const CartListItem: FC<CartListItemProps> = (props) => {
@@ -23,6 +24,7 @@ export const CartListItem: FC<CartListItemProps> = (props) => {
       <div className={styles.actions}>
         <button onClick={props.onRemove}>-</button>
         <button onClick={props.onAdd}>+</button>
+        <button className={styles.trash} onClick={props.onClear}/>
       </div>
     </li>
   );

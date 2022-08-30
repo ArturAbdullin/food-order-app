@@ -17,6 +17,14 @@ type CartActionRemoveItem = CartActionCommon & {
   id: string;
 };
 
-export type CartAction = CartActionAddItem | CartActionRemoveItem;
+type CartActionClearItem = CartActionCommon & {
+  type: "CLEAR_CART_ITEM";
+  id: string;
+};
+
+export type CartAction =
+  | CartActionAddItem
+  | CartActionRemoveItem
+  | CartActionClearItem;
 
 export type CartReducer = (state: CartState, action: CartAction) => CartState;

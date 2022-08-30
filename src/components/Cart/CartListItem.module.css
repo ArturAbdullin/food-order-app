@@ -64,3 +64,10 @@
   background-color: #8a2b06;
   color: white;
 }
+
+.trash {
+  background-image: url("../../assets/trash-icon-32.svg");
+  background-size: 60%;
+  background-position: 45% 50%;
+  background-repeat: no-repeat;
+}

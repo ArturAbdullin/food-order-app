@@ -21,6 +21,10 @@ export const Cart: FC<CartProps> = (props) => {
     cartContext.addItem({ ...item, amount: 1 });
   };
 
+  const cartItemClearHandler = (id: string) => {
+    cartContext.clearItem(id);
+  };
+
   const cartComponents: React.ReactNode[] = cartContext.items.map((item) => (
     <CartListItem
       key={item.id}
@@ -30,6 +34,7 @@ export const Cart: FC<CartProps> = (props) => {
       price={item.price}
       onRemove={cartItemRemoveHandler.bind(null, item.id)}
       onAdd={cartItemAddHandler.bind(null, item)}
+      onClear={cartItemClearHandler.bind(null, item.id)}
     />
   ));
   const totalPrice = `$${cartContext.totalPrice.toFixed(2)}`;
