@@ -13,9 +13,13 @@ type CartProps = {
 export const Cart: FC<CartProps> = (props) => {
   const cartContext = useContext(CartContext);
 
-  const cartItemRemoveHandler = (id: string) => {};
+  const cartItemRemoveHandler = (id: string) => {
+    cartContext.removeItem(id);
+  };
 
-  const cartItemAddHandler = (item: CartItem) => {};
+  const cartItemAddHandler = (item: CartItem) => {
+    cartContext.addItem({ ...item, amount: 1 });
+  };
 
   const cartComponents: React.ReactNode[] = cartContext.items.map((item) => (
     <CartListItem
