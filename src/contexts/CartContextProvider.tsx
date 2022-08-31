@@ -43,7 +43,7 @@ const cartReducer: CartReducer = (state, action) => {
 
     let updatedItems: CartItem[] = [...state.items];
     let existingCartItem: CartItem = updatedItems[existingCartItemIdx];
-    const updatedTotalPrice = state.totalPrice - existingCartItem.price;
+    const updatedTotalPrice = Math.abs(state.totalPrice - existingCartItem.price);
 
     if (existingCartItem.amount === 1) {
       updatedItems = updatedItems.filter((item) => item.id !== action.id);
@@ -69,7 +69,7 @@ const cartReducer: CartReducer = (state, action) => {
 
     const existingCartItem = state.items[existingCartItemIdx];
     const updatedTotalPrice =
-      state.totalPrice - existingCartItem.amount * existingCartItem.price;
+      Math.abs(state.totalPrice - existingCartItem.amount * existingCartItem.price);
 
     const updatedItems = state.items.filter((item) => item.id !== action.id);
 
