@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./MealsSummary.module.css";
 
+import githubIcon from "../../assets/github-32.png";
+
 export const MealsSummary = () => {
   return (
     <section className={styles.summary}>
@@ -13,6 +15,13 @@ export const MealsSummary = () => {
         All our meals are cooked with high-quality ingredients, just-in-time and
         of course by experienced chefs!
       </p>
+      <p><a
+          className={styles["github-link"]}
+          href="https://github.com/ArturAbdullin/food-order-app"
+        >
+          <img src={githubIcon} alt="github icon" />
+          <span>GitHub</span>
+        </a></p>
     </section>
   );
 };
