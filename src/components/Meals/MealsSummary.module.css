@@ -16,3 +16,25 @@
   font-size: 2rem;
   margin-top: 0;
 }
+
+.github-link {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+.github-link:visited {
+  color: white;
+}
+
+.github-link img {
+  width: 1.3em;
+  height: 1.3em;
+  margin-right: 0.7em;
+}
